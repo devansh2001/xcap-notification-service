@@ -5,6 +5,7 @@ import requests
 from flask_cors import CORS
 import json
 from apscheduler.schedulers.background import BackgroundScheduler
+from datetime import datetime
 
 scheduler = BackgroundScheduler()
 scheduler.start()
@@ -52,6 +53,10 @@ def schedule_notification():
     
     print(input_date_time)
     print(device_id)
+
+    # https://stackabuse.com/converting-strings-to-datetime-in-python/ 
+    notification_time = datetime.strptime(input_date_time, '%Y-%m-%d %H:%M:%S')
+    print(notification_time)
 
     # scheduler.add_job(firebase_cloud_messaging_notification, 'date', run_date=input_date_time, args=[device_id])
     return 'OK'
