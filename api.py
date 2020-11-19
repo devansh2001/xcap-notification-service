@@ -6,12 +6,13 @@ from flask_cors import CORS
 import json
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
+import os
 
 scheduler = BackgroundScheduler()
 scheduler.start()
 
 # Fix this - Add server key from environment variable in Heroku
-server_key = ''
+server_key = os.environ['serverKey']
 
 def firebase_cloud_messaging_notification(device_id):
     url = "https://fcm.googleapis.com/fcm/send"
@@ -33,7 +34,7 @@ def firebase_cloud_messaging_notification(device_id):
 
     print(response.text)
 
-    return None
+    return response
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
@@ -58,5 +59,6 @@ def schedule_notification():
     notification_time = datetime.strptime(input_date_time, '%Y-%m-%d %H:%M:%S')
     print(notification_time)
 
-    # scheduler.add_job(firebase_cloud_messaging_notification, 'date', run_date=input_date_time, args=[device_id])
+    scheduler.add_job(firebase_cloud_messaging_notification, 'date', run_date=notification_time, args=[device_id])
+    print('Scheduled!')
     return 'OK'
