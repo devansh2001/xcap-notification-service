@@ -9,6 +9,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 scheduler = BackgroundScheduler()
 scheduler.start()
 
+# Fix this - Add server key from environment variable in Heroku
 server_key = ''
 
 def firebase_cloud_messaging_notification(device_id):
