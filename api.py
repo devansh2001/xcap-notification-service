@@ -19,8 +19,8 @@ def firebase_cloud_messaging_notification(device_id):
     body = {
         "to": device_id,
         "notification": {
-            "title": "Hello",
-            "body": "Yellow"
+            "title": "REMINDER: Fill XCAP Survey",
+            "body": "Touch here / open the app to fill the XCAP ResearchSurvey"
        }
     }
 
