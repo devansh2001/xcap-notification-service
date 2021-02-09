@@ -90,7 +90,7 @@ def schedule_notification():
     save_info['device_id'] = device_id
 
     # Add notfication_time and device_id to Firebase database
-    database.child("notification_info").save(save_info)
+    database.child("notification_info").push(save_info)
     # scheduler.add_job(firebase_cloud_messaging_notification, 'date', run_date=notification_time, args=[device_id])
     # print('Scheduled!')
     return 'OK'
