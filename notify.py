@@ -59,7 +59,7 @@ now = datetime.datetime.now()
 notifs = database.child("notification_info").get()
 trigger_notifs = []
 for notif in notifs.each():
-    scheduled_time = datetime.strptime(notif['notification_time'], '%Y-%m-%d %H:%M:%S')
+    scheduled_time = datetime.datetime.strptime(notif['notification_time'], '%Y-%m-%d %H:%M:%S')
     diff = datetime.timedelta(seconds=600)
     if scheduled_time >= now - diff:
         trigger_notifs.append(notif['device_id'])
