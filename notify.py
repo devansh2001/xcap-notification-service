@@ -59,6 +59,8 @@ now = datetime.datetime.now()
 notifs = database.child("notification_info").get()
 trigger_notifs = []
 for notif in notifs.each():
+    print(notif.val())
+    print(notif.key())
     scheduled_time = datetime.datetime.strptime(notif['notification_time'], '%Y-%m-%d %H:%M:%S')
     diff = datetime.timedelta(seconds=600)
     if scheduled_time >= now - diff:
