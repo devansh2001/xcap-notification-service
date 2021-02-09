@@ -82,11 +82,11 @@ def schedule_notification():
     # print(device_id)
 
     # https://stackabuse.com/converting-strings-to-datetime-in-python/ 
-    notification_time = datetime.strptime(input_date_time, '%Y-%m-%d %H:%M:%S')
+    # notification_time = datetime.strptime(input_date_time, '%Y-%m-%d %H:%M:%S')
     # print(notification_time)
 
     save_info = {}
-    save_info['notification_time'] = notification_time
+    save_info['notification_time'] = input_date_time
     save_info['device_id'] = device_id
 
     # Add notfication_time and device_id to Firebase database
