@@ -62,8 +62,9 @@ for notif in notifs.each():
     data = notif.val()
     scheduled_time = datetime.datetime.strptime(data['notification_time'], '%Y-%m-%d %H:%M:%S')
     diff = datetime.timedelta(seconds=600)
-    print(scheduled_time, now, diff, now - diff)
-    if diff < scheduled_time and scheduled_time <= now:
+    past = now - diff
+    print(past, scheduled_time, now, past < scheduled_time and scheduled_time <= now)
+    if past < scheduled_time and scheduled_time <= now:
         trigger_notifs.append(data['device_id'])
         print("Triggering")
 
