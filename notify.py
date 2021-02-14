@@ -62,8 +62,10 @@ for notif in notifs.each():
     data = notif.val()
     scheduled_time = datetime.datetime.strptime(data['notification_time'], '%Y-%m-%d %H:%M:%S')
     diff = datetime.timedelta(seconds=600)
+    print(scheduled_time, now, diff, now - diff)
     if scheduled_time >= now - diff:
         trigger_notifs.append(data['device_id'])
+        print("Scheduled")
 
 for i in range(0, len(trigger_notifs)):
     firebase_cloud_messaging_notification(trigger_notifs[i])
