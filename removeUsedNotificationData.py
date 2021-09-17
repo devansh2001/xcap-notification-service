@@ -37,13 +37,9 @@ trigger_notifs = []
 for notif in notifs.each():
     data = notif.val()
     key = notif.key()
-    print(key)
     scheduled_time = datetime.datetime.strptime(data['notification_time'], '%Y-%m-%d %H:%M:%S')
     diff = datetime.timedelta(seconds=60 * 60 * 24 * 3)
     print('Removing notfication data', scheduled_time, now, now - scheduled_time, diff)
     if (now - scheduled_time > diff):
         # delete
-        print('Will delete', scheduled_time)
-        pass
-    else:
-        print('Will not delete', scheduled_time)
+        database.child("notification_info").child(key).remove()
